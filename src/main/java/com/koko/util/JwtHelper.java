@@ -25,6 +25,9 @@ public class JwtHelper {
     @Value("${token.secret}")
     private static String secret;
 
+    /**
+     * 生成token
+     */
     public static String generate(Map<String, Object> obj) {
         long now = System.currentTimeMillis();
         SignatureAlgorithm algorithm = SignatureAlgorithm.HS256;
@@ -37,11 +40,17 @@ public class JwtHelper {
         return builder.compact();
     }
 
+    /**
+     * 解析token
+     */
     public static Claims parse(String token) {
         SecretKey secretKey = generateKey();
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
     }
 
+    /**
+     * 生成密钥
+     */
     private static SecretKey generateKey() {
         byte[] bytes = Base64Util.encode(secret).getBytes();
         return new SecretKeySpec(bytes, "AES");

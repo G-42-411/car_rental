@@ -23,10 +23,10 @@ public class ResultUtil {
     }
 
     public static ResultUtil error(Integer code, String msg) {
-        ResultUtil result = new ResultUtil();
-        result.setCode(code)
-                .setMsg(msg)
-                .setData(null);
-        return result;
+        return new ResultUtil().setData(null).setCode(code).setMsg(msg);
+    }
+
+    public static ResultUtil error(String msg) {
+        return new ResultUtil().setData(null).setCode(500).setMsg(msg);
     }
 }
