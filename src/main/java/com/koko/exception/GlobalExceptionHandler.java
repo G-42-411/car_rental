@@ -45,14 +45,5 @@ public class GlobalExceptionHandler {
         return ResultUtil.error(402, e.getMessage());
     }
 
-    /**
-     * 自定义异常
-     */
-    @ExceptionHandler(CustomException.class)
-    public ResultUtil customException(CustomException e){
-        if (ObjectUtils.isEmpty(e.getCode())){
-            return ResultUtil.error(e.getMsg());
-        }
-        return ResultUtil.error(e.getCode(), e.getMsg());
-    }
+
 }
