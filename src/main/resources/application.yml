@@ -1,6 +1,6 @@
 server:
   #端口号
-  port: 8080
+  port: 8081
   servlet:
     #应用的访问路径
     context-path: /
@@ -12,6 +12,14 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root
+  security:
+    user:
+      name: root
+      password: root
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
 
 
 mybatis:
@@ -31,6 +39,10 @@ token:
   secret: 5d7ae5b5cd624dc89b80e2392a605304
   # 令牌有效期（默认30分钟）
   expireTime: 30
+
+file:
+  default-storage-address: C:/Users/13629/Desktop/
+  default-download-address: C:/Users/13629/Desktop/
 
 #日志配置
 logging:
