@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koko.dao.CarStorefrontMapper">
+  <resultMap id="BaseResultMap" type="com.koko.pojo.CarStorefront">
+    <result column="car_id" jdbcType="INTEGER" property="carId" />
+    <result column="storefront_id" jdbcType="INTEGER" property="storefrontId" />
+  </resultMap>
+  <insert id="insert" parameterType="com.koko.pojo.CarStorefront">
+    insert into car_storefront (car_id, storefront_id)
+    values (#{carId,jdbcType=INTEGER}, #{storefrontId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.koko.pojo.CarStorefront">
+    insert into car_storefront
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="carId != null">
+        car_id,
+      </if>
+      <if test="storefrontId != null">
+        storefront_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="carId != null">
+        #{carId,jdbcType=INTEGER},
+      </if>
+      <if test="storefrontId != null">
+        #{storefrontId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.koko.pojo.CarStorefront">
+    <result column="car_id" jdbcType="INTEGER" property="carId" />
+    <result column="storefront_id" jdbcType="INTEGER" property="storefrontId" />
+  </resultMap>
+  <insert id="insert" parameterType="com.koko.pojo.CarStorefront">
+    insert into car_storefront (car_id, storefront_id)
+    values (#{carId,jdbcType=INTEGER}, #{storefrontId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.koko.pojo.CarStorefront">
+    insert into car_storefront
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="carId != null">
+        car_id,
+      </if>
+      <if test="storefrontId != null">
+        storefront_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="carId != null">
+        #{carId,jdbcType=INTEGER},
+      </if>
+      <if test="storefrontId != null">
+        #{storefrontId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.koko.pojo.CarStorefront">
+    <result column="car_id" jdbcType="INTEGER" property="carId" />
+    <result column="storefront_id" jdbcType="INTEGER" property="storefrontId" />
+  </resultMap>
+  <insert id="insert" parameterType="com.koko.pojo.CarStorefront">
+    insert into car_storefront (car_id, storefront_id)
+    values (#{carId,jdbcType=INTEGER}, #{storefrontId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.koko.pojo.CarStorefront">
+    insert into car_storefront
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="carId != null">
+        car_id,
+      </if>
+      <if test="storefrontId != null">
+        storefront_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="carId != null">
+        #{carId,jdbcType=INTEGER},
+      </if>
+      <if test="storefrontId != null">
+        #{storefrontId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

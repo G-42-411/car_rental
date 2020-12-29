@@ -1,50 +1,93 @@
 package com.koko.pojo;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+public class User {
+    private Integer id;
 
-import java.util.Collection;
+    private String name;
 
-/**
- * @author 13629
- * @create 2020/12/21 15:50
- */
-public class User implements UserDetails {
-    private String username;
-    private String password;
+    private Integer age;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+    private Integer sex;
+
+    private String address;
+
+    private String phone;
+
+    private String email;
+
+    private String idNumber;
+
+    private String headPortrait;
+
+    public Integer getId() {
+        return id;
     }
 
-    @Override
-    public String getPassword() {
-        return null;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    @Override
-    public String getUsername() {
-        return null;
+    public String getName() {
+        return name;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
+    public Integer getAge() {
+        return age;
     }
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
-    @Override
-    public boolean isEnabled() {
-        return false;
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
+    }
+
+    public String getIdNumber() {
+        return idNumber;
+    }
+
+    public void setIdNumber(String idNumber) {
+        this.idNumber = idNumber == null ? null : idNumber.trim();
+    }
+
+    public String getHeadPortrait() {
+        return headPortrait;
+    }
+
+    public void setHeadPortrait(String headPortrait) {
+        this.headPortrait = headPortrait == null ? null : headPortrait.trim();
     }
 }

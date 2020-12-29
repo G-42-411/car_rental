@@ -1,7 +1,6 @@
 package com.koko.exception;
 
 import com.koko.util.ResultUtil;
-import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AccountExpiredException;
@@ -43,6 +42,15 @@ public class GlobalExceptionHandler {
     public ResultUtil accountExpiredException(AccountExpiredException e) {
         log.error(e.getMessage(), e);
         return ResultUtil.error(402, e.getMessage());
+    }
+
+    /**
+     * 文件大小超出限制
+     */
+    @ExceptionHandler(FileSizeLimitExceededException.class)
+    public ResultUtil fileSizeLimitExceededException(FileSizeLimitExceededException e){
+        log.error(e.getMessage(), e);
+        return ResultUtil.error(403, e.getMessage());
     }
 
 

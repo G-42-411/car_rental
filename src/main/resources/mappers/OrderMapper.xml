@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koko.dao.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.koko.pojo.Order">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="rent_end_time" jdbcType="TIMESTAMP" property="rentEndTime" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="car_number" jdbcType="VARCHAR" property="carNumber" />
+    <result column="rent_price" jdbcType="INTEGER" property="rentPrice" />
+    <result column="deposit" jdbcType="INTEGER" property="deposit" />
+    <result column="acception_officer" jdbcType="VARCHAR" property="acceptionOfficer" />
+    <result column="rent_address" jdbcType="VARCHAR" property="rentAddress" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, number, start_time, end_time, rent_end_time, id_number, name, status, car_number, 
+    rent_price, deposit, acception_officer, rent_address
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.koko.pojo.Order">
+    insert into order (id, number, start_time, 
+      end_time, rent_end_time, id_number, 
+      name, status, car_number, 
+      rent_price, deposit, acception_officer, 
+      rent_address)
+    values (#{id,jdbcType=INTEGER}, #{number,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{rentEndTime,jdbcType=TIMESTAMP}, #{idNumber,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{carNumber,jdbcType=VARCHAR}, 
+      #{rentPrice,jdbcType=INTEGER}, #{deposit,jdbcType=INTEGER}, #{acceptionOfficer,jdbcType=VARCHAR}, 
+      #{rentAddress,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.koko.pojo.Order">
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="rentEndTime != null">
+        rent_end_time,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="carNumber != null">
+        car_number,
+      </if>
+      <if test="rentPrice != null">
+        rent_price,
+      </if>
+      <if test="deposit != null">
+        deposit,
+      </if>
+      <if test="acceptionOfficer != null">
+        acception_officer,
+      </if>
+      <if test="rentAddress != null">
+        rent_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rentEndTime != null">
+        #{rentEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="carNumber != null">
+        #{carNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="rentPrice != null">
+        #{rentPrice,jdbcType=INTEGER},
+      </if>
+      <if test="deposit != null">
+        #{deposit,jdbcType=INTEGER},
+      </if>
+      <if test="acceptionOfficer != null">
+        #{acceptionOfficer,jdbcType=VARCHAR},
+      </if>
+      <if test="rentAddress != null">
+        #{rentAddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.koko.pojo.Order">
+    update order
+    <set>
+      <if test="number != null">
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rentEndTime != null">
+        rent_end_time = #{rentEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="carNumber != null">
+        car_number = #{carNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="rentPrice != null">
+        rent_price = #{rentPrice,jdbcType=INTEGER},
+      </if>
+      <if test="deposit != null">
+        deposit = #{deposit,jdbcType=INTEGER},
+      </if>
+      <if test="acceptionOfficer != null">
+        acception_officer = #{acceptionOfficer,jdbcType=VARCHAR},
+      </if>
+      <if test="rentAddress != null">
+        rent_address = #{rentAddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.koko.pojo.Order">
+    update order
+    set number = #{number,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      rent_end_time = #{rentEndTime,jdbcType=TIMESTAMP},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      car_number = #{carNumber,jdbcType=VARCHAR},
+      rent_price = #{rentPrice,jdbcType=INTEGER},
+      deposit = #{deposit,jdbcType=INTEGER},
+      acception_officer = #{acceptionOfficer,jdbcType=VARCHAR},
+      rent_address = #{rentAddress,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.koko.pojo.Order">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="rent_end_time" jdbcType="TIMESTAMP" property="rentEndTime" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="car_number" jdbcType="VARCHAR" property="carNumber" />
+    <result column="rent_price" jdbcType="INTEGER" property="rentPrice" />
+    <result column="deposit" jdbcType="INTEGER" property="deposit" />
+    <result column="acception_officer" jdbcType="VARCHAR" property="acceptionOfficer" />
+    <result column="rent_address" jdbcType="VARCHAR" property="rentAddress" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, number, start_time, end_time, rent_end_time, id_number, name, status, car_number, 
+    rent_price, deposit, acception_officer, rent_address
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.koko.pojo.Order">
+    insert into order (id, number, start_time, 
+      end_time, rent_end_time, id_number, 
+      name, status, car_number, 
+      rent_price, deposit, acception_officer, 
+      rent_address)
+    values (#{id,jdbcType=INTEGER}, #{number,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{rentEndTime,jdbcType=TIMESTAMP}, #{idNumber,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{carNumber,jdbcType=VARCHAR}, 
+      #{rentPrice,jdbcType=INTEGER}, #{deposit,jdbcType=INTEGER}, #{acceptionOfficer,jdbcType=VARCHAR}, 
+      #{rentAddress,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.koko.pojo.Order">
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="rentEndTime != null">
+        rent_end_time,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="carNumber != null">
+        car_number,
+      </if>
+      <if test="rentPrice != null">
+        rent_price,
+      </if>
+      <if test="deposit != null">
+        deposit,
+      </if>
+      <if test="acceptionOfficer != null">
+        acception_officer,
+      </if>
+      <if test="rentAddress != null">
+        rent_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rentEndTime != null">
+        #{rentEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="carNumber != null">
+        #{carNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="rentPrice != null">
+        #{rentPrice,jdbcType=INTEGER},
+      </if>
+      <if test="deposit != null">
+        #{deposit,jdbcType=INTEGER},
+      </if>
+      <if test="acceptionOfficer != null">
+        #{acceptionOfficer,jdbcType=VARCHAR},
+      </if>
+      <if test="rentAddress != null">
+        #{rentAddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.koko.pojo.Order">
+    update order
+    <set>
+      <if test="number != null">
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rentEndTime != null">
+        rent_end_time = #{rentEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="carNumber != null">
+        car_number = #{carNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="rentPrice != null">
+        rent_price = #{rentPrice,jdbcType=INTEGER},
+      </if>
+      <if test="deposit != null">
+        deposit = #{deposit,jdbcType=INTEGER},
+      </if>
+      <if test="acceptionOfficer != null">
+        acception_officer = #{acceptionOfficer,jdbcType=VARCHAR},
+      </if>
+      <if test="rentAddress != null">
+        rent_address = #{rentAddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.koko.pojo.Order">
+    update order
+    set number = #{number,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      rent_end_time = #{rentEndTime,jdbcType=TIMESTAMP},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      car_number = #{carNumber,jdbcType=VARCHAR},
+      rent_price = #{rentPrice,jdbcType=INTEGER},
+      deposit = #{deposit,jdbcType=INTEGER},
+      acception_officer = #{acceptionOfficer,jdbcType=VARCHAR},
+      rent_address = #{rentAddress,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.koko.pojo.Order">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="rent_end_time" jdbcType="TIMESTAMP" property="rentEndTime" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="car_number" jdbcType="VARCHAR" property="carNumber" />
+    <result column="rent_price" jdbcType="INTEGER" property="rentPrice" />
+    <result column="deposit" jdbcType="INTEGER" property="deposit" />
+    <result column="acception_officer" jdbcType="VARCHAR" property="acceptionOfficer" />
+    <result column="rent_address" jdbcType="VARCHAR" property="rentAddress" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, number, start_time, end_time, rent_end_time, id_number, name, status, car_number, 
+    rent_price, deposit, acception_officer, rent_address
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.koko.pojo.Order">
+    insert into order (id, number, start_time, 
+      end_time, rent_end_time, id_number, 
+      name, status, car_number, 
+      rent_price, deposit, acception_officer, 
+      rent_address)
+    values (#{id,jdbcType=INTEGER}, #{number,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{rentEndTime,jdbcType=TIMESTAMP}, #{idNumber,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{carNumber,jdbcType=VARCHAR}, 
+      #{rentPrice,jdbcType=INTEGER}, #{deposit,jdbcType=INTEGER}, #{acceptionOfficer,jdbcType=VARCHAR}, 
+      #{rentAddress,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.koko.pojo.Order">
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="rentEndTime != null">
+        rent_end_time,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="carNumber != null">
+        car_number,
+      </if>
+      <if test="rentPrice != null">
+        rent_price,
+      </if>
+      <if test="deposit != null">
+        deposit,
+      </if>
+      <if test="acceptionOfficer != null">
+        acception_officer,
+      </if>
+      <if test="rentAddress != null">
+        rent_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rentEndTime != null">
+        #{rentEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="carNumber != null">
+        #{carNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="rentPrice != null">
+        #{rentPrice,jdbcType=INTEGER},
+      </if>
+      <if test="deposit != null">
+        #{deposit,jdbcType=INTEGER},
+      </if>
+      <if test="acceptionOfficer != null">
+        #{acceptionOfficer,jdbcType=VARCHAR},
+      </if>
+      <if test="rentAddress != null">
+        #{rentAddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.koko.pojo.Order">
+    update order
+    <set>
+      <if test="number != null">
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rentEndTime != null">
+        rent_end_time = #{rentEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="carNumber != null">
+        car_number = #{carNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="rentPrice != null">
+        rent_price = #{rentPrice,jdbcType=INTEGER},
+      </if>
+      <if test="deposit != null">
+        deposit = #{deposit,jdbcType=INTEGER},
+      </if>
+      <if test="acceptionOfficer != null">
+        acception_officer = #{acceptionOfficer,jdbcType=VARCHAR},
+      </if>
+      <if test="rentAddress != null">
+        rent_address = #{rentAddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.koko.pojo.Order">
+    update order
+    set number = #{number,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      rent_end_time = #{rentEndTime,jdbcType=TIMESTAMP},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      car_number = #{carNumber,jdbcType=VARCHAR},
+      rent_price = #{rentPrice,jdbcType=INTEGER},
+      deposit = #{deposit,jdbcType=INTEGER},
+      acception_officer = #{acceptionOfficer,jdbcType=VARCHAR},
+      rent_address = #{rentAddress,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

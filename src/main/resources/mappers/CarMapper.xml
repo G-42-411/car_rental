@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koko.dao.CarMapper">
+  <resultMap id="BaseResultMap" type="com.koko.pojo.Car">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="brand" jdbcType="VARCHAR" property="brand" />
+    <result column="colour" jdbcType="VARCHAR" property="colour" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="rent_price" jdbcType="INTEGER" property="rentPrice" />
+    <result column="deposit" jdbcType="INTEGER" property="deposit" />
+    <result column="is_renting" jdbcType="INTEGER" property="isRenting" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, number, type, brand, colour, price, rent_price, deposit, is_renting, img, description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from car
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from car
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.koko.pojo.Car">
+    insert into car (id, number, type, 
+      brand, colour, price, 
+      rent_price, deposit, is_renting, 
+      img, description)
+    values (#{id,jdbcType=INTEGER}, #{number,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{brand,jdbcType=VARCHAR}, #{colour,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
+      #{rentPrice,jdbcType=INTEGER}, #{deposit,jdbcType=INTEGER}, #{isRenting,jdbcType=INTEGER}, 
+      #{img,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.koko.pojo.Car">
+    insert into car
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="brand != null">
+        brand,
+      </if>
+      <if test="colour != null">
+        colour,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="rentPrice != null">
+        rent_price,
+      </if>
+      <if test="deposit != null">
+        deposit,
+      </if>
+      <if test="isRenting != null">
+        is_renting,
+      </if>
+      <if test="img != null">
+        img,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="brand != null">
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="colour != null">
+        #{colour,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="rentPrice != null">
+        #{rentPrice,jdbcType=INTEGER},
+      </if>
+      <if test="deposit != null">
+        #{deposit,jdbcType=INTEGER},
+      </if>
+      <if test="isRenting != null">
+        #{isRenting,jdbcType=INTEGER},
+      </if>
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.koko.pojo.Car">
+    update car
+    <set>
+      <if test="number != null">
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="brand != null">
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="colour != null">
+        colour = #{colour,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="rentPrice != null">
+        rent_price = #{rentPrice,jdbcType=INTEGER},
+      </if>
+      <if test="deposit != null">
+        deposit = #{deposit,jdbcType=INTEGER},
+      </if>
+      <if test="isRenting != null">
+        is_renting = #{isRenting,jdbcType=INTEGER},
+      </if>
+      <if test="img != null">
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.koko.pojo.Car">
+    update car
+    set number = #{number,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      brand = #{brand,jdbcType=VARCHAR},
+      colour = #{colour,jdbcType=VARCHAR},
+      price = #{price,jdbcType=INTEGER},
+      rent_price = #{rentPrice,jdbcType=INTEGER},
+      deposit = #{deposit,jdbcType=INTEGER},
+      is_renting = #{isRenting,jdbcType=INTEGER},
+      img = #{img,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.koko.pojo.Car">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="brand" jdbcType="VARCHAR" property="brand" />
+    <result column="colour" jdbcType="VARCHAR" property="colour" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="rent_price" jdbcType="INTEGER" property="rentPrice" />
+    <result column="deposit" jdbcType="INTEGER" property="deposit" />
+    <result column="is_renting" jdbcType="INTEGER" property="isRenting" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, number, type, brand, colour, price, rent_price, deposit, is_renting, img, description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from car
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from car
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.koko.pojo.Car">
+    insert into car (id, number, type, 
+      brand, colour, price, 
+      rent_price, deposit, is_renting, 
+      img, description)
+    values (#{id,jdbcType=INTEGER}, #{number,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{brand,jdbcType=VARCHAR}, #{colour,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
+      #{rentPrice,jdbcType=INTEGER}, #{deposit,jdbcType=INTEGER}, #{isRenting,jdbcType=INTEGER}, 
+      #{img,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.koko.pojo.Car">
+    insert into car
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="brand != null">
+        brand,
+      </if>
+      <if test="colour != null">
+        colour,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="rentPrice != null">
+        rent_price,
+      </if>
+      <if test="deposit != null">
+        deposit,
+      </if>
+      <if test="isRenting != null">
+        is_renting,
+      </if>
+      <if test="img != null">
+        img,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="brand != null">
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="colour != null">
+        #{colour,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="rentPrice != null">
+        #{rentPrice,jdbcType=INTEGER},
+      </if>
+      <if test="deposit != null">
+        #{deposit,jdbcType=INTEGER},
+      </if>
+      <if test="isRenting != null">
+        #{isRenting,jdbcType=INTEGER},
+      </if>
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.koko.pojo.Car">
+    update car
+    <set>
+      <if test="number != null">
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="brand != null">
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="colour != null">
+        colour = #{colour,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="rentPrice != null">
+        rent_price = #{rentPrice,jdbcType=INTEGER},
+      </if>
+      <if test="deposit != null">
+        deposit = #{deposit,jdbcType=INTEGER},
+      </if>
+      <if test="isRenting != null">
+        is_renting = #{isRenting,jdbcType=INTEGER},
+      </if>
+      <if test="img != null">
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.koko.pojo.Car">
+    update car
+    set number = #{number,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      brand = #{brand,jdbcType=VARCHAR},
+      colour = #{colour,jdbcType=VARCHAR},
+      price = #{price,jdbcType=INTEGER},
+      rent_price = #{rentPrice,jdbcType=INTEGER},
+      deposit = #{deposit,jdbcType=INTEGER},
+      is_renting = #{isRenting,jdbcType=INTEGER},
+      img = #{img,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.koko.pojo.Car">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="brand" jdbcType="VARCHAR" property="brand" />
+    <result column="colour" jdbcType="VARCHAR" property="colour" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="rent_price" jdbcType="INTEGER" property="rentPrice" />
+    <result column="deposit" jdbcType="INTEGER" property="deposit" />
+    <result column="is_renting" jdbcType="INTEGER" property="isRenting" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, number, type, brand, colour, price, rent_price, deposit, is_renting, img, description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from car
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from car
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.koko.pojo.Car">
+    insert into car (id, number, type, 
+      brand, colour, price, 
+      rent_price, deposit, is_renting, 
+      img, description)
+    values (#{id,jdbcType=INTEGER}, #{number,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{brand,jdbcType=VARCHAR}, #{colour,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
+      #{rentPrice,jdbcType=INTEGER}, #{deposit,jdbcType=INTEGER}, #{isRenting,jdbcType=INTEGER}, 
+      #{img,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.koko.pojo.Car">
+    insert into car
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="brand != null">
+        brand,
+      </if>
+      <if test="colour != null">
+        colour,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="rentPrice != null">
+        rent_price,
+      </if>
+      <if test="deposit != null">
+        deposit,
+      </if>
+      <if test="isRenting != null">
+        is_renting,
+      </if>
+      <if test="img != null">
+        img,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="brand != null">
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="colour != null">
+        #{colour,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="rentPrice != null">
+        #{rentPrice,jdbcType=INTEGER},
+      </if>
+      <if test="deposit != null">
+        #{deposit,jdbcType=INTEGER},
+      </if>
+      <if test="isRenting != null">
+        #{isRenting,jdbcType=INTEGER},
+      </if>
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.koko.pojo.Car">
+    update car
+    <set>
+      <if test="number != null">
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="brand != null">
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="colour != null">
+        colour = #{colour,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="rentPrice != null">
+        rent_price = #{rentPrice,jdbcType=INTEGER},
+      </if>
+      <if test="deposit != null">
+        deposit = #{deposit,jdbcType=INTEGER},
+      </if>
+      <if test="isRenting != null">
+        is_renting = #{isRenting,jdbcType=INTEGER},
+      </if>
+      <if test="img != null">
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.koko.pojo.Car">
+    update car
+    set number = #{number,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      brand = #{brand,jdbcType=VARCHAR},
+      colour = #{colour,jdbcType=VARCHAR},
+      price = #{price,jdbcType=INTEGER},
+      rent_price = #{rentPrice,jdbcType=INTEGER},
+      deposit = #{deposit,jdbcType=INTEGER},
+      is_renting = #{isRenting,jdbcType=INTEGER},
+      img = #{img,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

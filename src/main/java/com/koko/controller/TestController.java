@@ -1,6 +1,6 @@
 package com.koko.controller;
 
-import com.koko.util.FileUploadUtils;
+import com.koko.util.FileRequestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +18,7 @@ public class TestController {
     public String upload(MultipartFile file){
         String filePath = "";
         try {
-            filePath = FileUploadUtils.upload(file);
+            filePath = FileRequestUtils.upload(file);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,5 +1,6 @@
 package com.koko.service;
 
+import com.koko.dao.UserMapper;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 
 /**
@@ -15,6 +17,9 @@ import java.util.ArrayList;
  */
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
+    @Resource
+    private UserMapper userMapper;
+
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         ArrayList<SimpleGrantedAuthority> authorities = new ArrayList<>();
