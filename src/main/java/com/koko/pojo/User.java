@@ -13,6 +13,8 @@ public class User {
 
     private String phone;
 
+    private String password;
+
     private String email;
 
     private String idNumber;
@@ -67,6 +69,14 @@ public class User {
         this.phone = phone == null ? null : phone.trim();
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
+
     public String getEmail() {
         return email;
     }
@@ -89,5 +99,21 @@ public class User {
 
     public void setHeadPortrait(String headPortrait) {
         this.headPortrait = headPortrait == null ? null : headPortrait.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", sex=" + sex +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", idNumber='" + idNumber + '\'' +
+                ", headPortrait='" + headPortrait + '\'' +
+                '}';
     }
 }

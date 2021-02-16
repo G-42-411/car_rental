@@ -32,7 +32,7 @@ public class FileRequestUtils {
         if (fileSize >= DEFAULT_SIZE) {
             throw new FileSizeLimitExceededException();
         }
-        String filePath = FilePathUtil.getBaseUploadPath() + fileName;
+        String filePath = FilePathUtils.getBaseUploadPath() + fileName;
         File storageFile = new File(filePath);
         file.transferTo(storageFile);
         return filePath;
@@ -48,7 +48,7 @@ public class FileRequestUtils {
             if (StringUtils.isEmpty(fileName)) {
                 throw new Exception("文件名错误，请检查后重试");
             }
-            String filePath = FilePathUtil.getBaseDownloadPath() + fileName;
+            String filePath = FilePathUtils.getBaseDownloadPath() + fileName;
             String realFile = fileName + "-" + System.currentTimeMillis();
             response.setContentType("application/x-msdownload;charset=utf-8");
             response.setHeader("Content-Disposition", "attachment;filename=" + realFile);

@@ -8,8 +8,7 @@ import org.springframework.stereotype.Component;
  * @create 2020/12/25 16:54
  */
 @Component
-
-public class FilePathUtil {
+public class FilePathUtils {
 
     @Value("file.base-download-path")
     private static String baseDownloadPath;

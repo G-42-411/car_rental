@@ -3,6 +3,8 @@ package com.koko.controller;
 import com.koko.util.FileRequestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,8 +16,9 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 public class TestController {
     Logger log = LoggerFactory.getLogger(TestController.class);
+
     @PostMapping("/upload")
-    public String upload(MultipartFile file){
+    public String upload(MultipartFile file) {
         String filePath = "";
         try {
             filePath = FileRequestUtils.upload(file);
@@ -24,5 +27,10 @@ public class TestController {
         }
         log.info(filePath);
         return filePath;
+    }
+
+    @GetMapping("/checkLogin")
+    public String checkLogin() {
+        return "login success";
     }
 }

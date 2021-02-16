@@ -49,53 +49,53 @@
             <!-- 数据库表主键 -->
 <!--            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
         </table>
-        <table tableName="car" domainObjectName="Car" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-<!--            生成实体类时是否使用实际的列名作为实体类的属性名-->
-            <property name="useActualColumnNames" value="false"/>
-            <!-- 数据库表主键 -->
-            <!--            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
-        </table>
-        <table tableName="car_storefront" domainObjectName="CarStorefront" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table tableName="comment" domainObjectName="Comment" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table tableName="coupon" domainObjectName="Coupon" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table tableName="order" domainObjectName="Order" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table tableName="role" domainObjectName="Role" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table tableName="storefront" domainObjectName="Storefront" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table tableName="user_role" domainObjectName="UserRole" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table tableName="user_storefront" domainObjectName="UserStorefront" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table tableName="permission" domainObjectName="Permission" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table tableName="role_permission" domainObjectName="RolePermission" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
+<!--        <table tableName="car" domainObjectName="Car" enableCountByExample="false" enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+<!--&lt;!&ndash;            生成实体类时是否使用实际的列名作为实体类的属性名&ndash;&gt;-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--            &lt;!&ndash; 数据库表主键 &ndash;&gt;-->
+<!--            &lt;!&ndash;            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>&ndash;&gt;-->
+<!--        </table>-->
+<!--        <table tableName="car_storefront" domainObjectName="CarStorefront" enableCountByExample="false" enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--        </table>-->
+<!--        <table tableName="comment" domainObjectName="Comment" enableCountByExample="false" enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--        </table>-->
+<!--        <table tableName="coupon" domainObjectName="Coupon" enableCountByExample="false" enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--        </table>-->
+<!--        <table tableName="order" domainObjectName="Order" enableCountByExample="false" enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--        </table>-->
+<!--        <table tableName="role" domainObjectName="Role" enableCountByExample="false" enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--        </table>-->
+<!--        <table tableName="storefront" domainObjectName="Storefront" enableCountByExample="false" enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--        </table>-->
+<!--        <table tableName="user_role" domainObjectName="UserRole" enableCountByExample="false" enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--        </table>-->
+<!--        <table tableName="user_storefront" domainObjectName="UserStorefront" enableCountByExample="false" enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--        </table>-->
+<!--        <table tableName="permission" domainObjectName="Permission" enableCountByExample="false" enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--        </table>-->
+<!--        <table tableName="role_permission" domainObjectName="RolePermission" enableCountByExample="false" enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">-->
+<!--            <property name="useActualColumnNames" value="false"/>-->
+<!--        </table>-->
     </context>
 
 </generatorConfiguration>

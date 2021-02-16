@@ -1,17 +1,29 @@
 package com.koko.pojo;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author 13629
  * @create 2020/12/29 16:48
  */
-public class CustomUserDetails implements UserDetails {
+@Data
+@AllArgsConstructor
+public class LoginUser implements UserDetails {
+
+    /**
+     * 用户数据
+     */
     private User user;
+    /**
+     * 用户权限
+     */
     private List<GrantedAuthority> authorities;
 
     @Override
@@ -21,31 +33,31 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return user.getName();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }
