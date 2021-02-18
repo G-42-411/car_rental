@@ -1,6 +1,6 @@
 package com.koko.exception;
 
-import com.koko.util.ResultUtils;
+import com.koko.dto.CommonResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AccountExpiredException;
@@ -21,36 +21,36 @@ public class GlobalExceptionHandler {
      * 通用异常
      */
     @ExceptionHandler(Exception.class)
-    public ResultUtils defaultException(Exception e) {
+    public CommonResult defaultException(Exception e) {
         log.error(e.getMessage(), e);
-        return ResultUtils.error(500, e.getMessage());
+        return CommonResult.error(500, e.getMessage());
     }
 
     /**
      * 用户未找到异常
      */
     @ExceptionHandler(UsernameNotFoundException.class)
-    public ResultUtils usernameNotFoundException(UsernameNotFoundException e) {
+    public CommonResult usernameNotFoundException(UsernameNotFoundException e) {
         log.error(e.getMessage(), e);
-        return ResultUtils.error(401, e.getMessage());
+        return CommonResult.error(401, e.getMessage());
     }
 
     /**
      * 账户过期异常
      */
     @ExceptionHandler(AccountExpiredException.class)
-    public ResultUtils accountExpiredException(AccountExpiredException e) {
+    public CommonResult accountExpiredException(AccountExpiredException e) {
         log.error(e.getMessage(), e);
-        return ResultUtils.error(402, e.getMessage());
+        return CommonResult.error(402, e.getMessage());
     }
 
     /**
      * 文件大小超出限制
      */
     @ExceptionHandler(FileSizeLimitExceededException.class)
-    public ResultUtils fileSizeLimitExceededException(FileSizeLimitExceededException e){
+    public CommonResult fileSizeLimitExceededException(FileSizeLimitExceededException e){
         log.error(e.getMessage(), e);
-        return ResultUtils.error(403, e.getMessage());
+        return CommonResult.error(403, e.getMessage());
     }
 
 

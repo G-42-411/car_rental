@@ -26,5 +26,5 @@ public interface PermissionMapper {
      * @param user
      * @return
      */
-    List<String> selectRolePermissionByUser(User user);
+    Set<String> selectRolePermissionByUser(User user);
 }

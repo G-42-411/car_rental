@@ -24,11 +24,11 @@ public class LoginUser implements UserDetails {
     /**
      * 用户权限
      */
-    private List<GrantedAuthority> authorities;
+    private Set<GrantedAuthority> authorities;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return authorities;
     }
 
     @Override

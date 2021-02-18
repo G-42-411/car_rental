@@ -1,7 +1,7 @@
 package com.koko.security.handler;
 
 import com.alibaba.fastjson.JSONObject;
-import com.koko.util.ResultUtils;
+import com.koko.dto.CommonResult;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -22,6 +22,6 @@ public class AjaxLogoutSuccessHandler implements LogoutSuccessHandler {
         httpServletResponse.setContentType("application/json");
         httpServletResponse.setCharacterEncoding("utf-8");
         httpServletResponse.getWriter()
-                .write(JSONObject.toJSONString(ResultUtils.ok(null)));
+                .write(JSONObject.toJSONString(CommonResult.ok(null)));
     }
 }

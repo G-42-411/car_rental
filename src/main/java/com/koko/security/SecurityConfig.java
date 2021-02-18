@@ -1,11 +1,13 @@
 package com.koko.security;
 
 import com.koko.security.filter.JwtAuthenticationTokenFilter;
+import com.koko.security.filter.LoginFilter;
 import com.koko.security.handler.AjaxAuthenticationEntryPoint;
 import com.koko.security.handler.AjaxAuthenticationFailureHandler;
 import com.koko.security.handler.AjaxAuthenticationSuccessHandler;
 import com.koko.security.handler.AjaxLogoutSuccessHandler;
 import com.koko.service.impl.UserDetailsServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * @author 13629
  * @create 2020/12/17 14:41
  */
+@Slf4j
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -43,8 +46,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
-
-    private Logger log = LoggerFactory.getLogger(SecurityConfig.class);
 
     /**
      * 配置用户认证
@@ -70,6 +71,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         super.configure(web);
     }
+
+    /**
+     * 自定义登录拦截器
+     */
+    @Bean
+    public LoginFilter loginFilter() throws Exception {
+        LoginFilter loginFilter = new LoginFilter();
+        loginFilter.setAuthenticationSuccessHandler(ajaxAuthenticationSuccessHandler);
+        loginFilter.setAuthenticationFailureHandler(ajaxAuthenticationFailureHandler);
+        loginFilter.setFilterProcessesUrl("/login");
+        loginFilter.setAuthenticationManager(authenticationManagerBean());
+        return loginFilter;
+    }
+
+
 
     /**
      * 配置访问控制
@@ -103,8 +119,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()    //开启登录
 //                .loginPage("")
 //                .loginProcessingUrl("")
-                .successHandler(ajaxAuthenticationSuccessHandler)   //登录成功
-                .failureHandler(ajaxAuthenticationFailureHandler)   //登录失败
+//                .successHandler(ajaxAuthenticationSuccessHandler)   //登录成功
+//                .failureHandler(ajaxAuthenticationFailureHandler)   //登录失败
                 .permitAll()
 
                 .and()
@@ -114,5 +130,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
 
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class); //token过滤器
+        http.addFilterAt(loginFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }

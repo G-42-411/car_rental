@@ -1,30 +1,16 @@
 package com.koko.controller;
 
-import com.koko.util.FileRequestUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author 13629
  * @create 2020/12/21 15:15
  */
+@Slf4j
 @RestController
 public class TestController {
-    Logger log = LoggerFactory.getLogger(TestController.class);
-
-    @PostMapping("/upload")
-    public String upload(MultipartFile file) {
-        String filePath = "";
-        try {
-            filePath = FileRequestUtils.upload(file);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        log.info(filePath);
-        return filePath;
-    }
 
     @GetMapping("/checkLogin")
     public String checkLogin() {

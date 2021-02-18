@@ -16,7 +16,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 用户验证处理
@@ -32,21 +34,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UserMapper userMapper;
 
     @Resource
-    private UserRoleMapper userRoleMapper;
-
-    @Resource
     private PermissionMapper permissionMapper;
 
     @Override
     public LoginUser loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userMapper.selectByUsername(username);
-        log.info(user.toString());
         if (ObjectUtils.isEmpty(user)) {
             throw new UsernameNotFoundException("用户名不存在");
         }
-        List<String> permissions = permissionMapper.selectRolePermissionByUser(user);
-        log.info(permissions.toString());
-        List<GrantedAuthority> authorities = new ArrayList<>();
+        Set<String> permissions = permissionMapper.selectRolePermissionByUser(user);
+        Set<GrantedAuthority> authorities = new HashSet<>();
         for (String permission : permissions) {
             authorities.add(new SimpleGrantedAuthority(permission));
         }

@@ -1,7 +1,7 @@
 package com.koko.security.handler;
 
 import com.alibaba.fastjson.JSONObject;
-import com.koko.util.ResultUtils;
+import com.koko.dto.CommonResult;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
@@ -23,6 +23,6 @@ public class AjaxAuthenticationFailureHandler implements AuthenticationFailureHa
         httpServletResponse.setContentType("application/json");
         httpServletResponse.setCharacterEncoding("utf-8");
         httpServletResponse.getWriter()
-                .write(JSONObject.toJSONString(ResultUtils.error("用户登录失败")));
+                .write(JSONObject.toJSONString(CommonResult.error("用户登录失败")));
     }
 }
