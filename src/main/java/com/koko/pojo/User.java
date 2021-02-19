@@ -1,5 +1,7 @@
 package com.koko.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class User {
     private Integer id;
 
@@ -13,6 +15,7 @@ public class User {
 
     private String phone;
 
+    @JsonIgnore
     private String password;
 
     private String email;

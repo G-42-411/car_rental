@@ -8,6 +8,7 @@ public enum ResultStatus {
     SUCCESS(200, "Success"),
     REQUEST_ERROR(400, "Bad Request"),
     LOGIN_ERROR(401, "Unauthorized"),
+    FILE_UPLOAD_ERROR(601, "File Upload Failed"),
     ERROR(500, "Server Error");
 
 

@@ -53,5 +53,14 @@ public class GlobalExceptionHandler {
         return CommonResult.error(403, e.getMessage());
     }
 
+    /**
+     * 用户自定义异常
+     */
+    @ExceptionHandler(CustomizeException.class)
+    public CommonResult customizeException(CustomizeException e){
+        log.error(e.getMessage(), e);
+        return CommonResult.error(e.getCode(), e.getMessage());
+    }
+
 
 }

@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,9 +24,8 @@ public class UserController extends BaseController {
 
     @GetMapping("/getUserInfo")
     public CommonResult getUserInfo() {
+        LoginUser loginUser = getLoginUser();
         Map<String, Object> map = new HashMap<>();
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        LoginUser loginUser = (LoginUser) principal;
         map.put("user", loginUser.getUser());
         map.put("authorities", loginUser.getAuthorities());
         return CommonResult.ok(map);

@@ -18,7 +18,7 @@ public class FileController {
     public String upload(MultipartFile file) {
         String filePath = "";
         try {
-            filePath = FileRequestUtils.upload(file);
+            filePath = FileRequestUtils.save(file);
         } catch (Exception e) {
             e.printStackTrace();
         }

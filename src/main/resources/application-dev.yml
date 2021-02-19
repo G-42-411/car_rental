@@ -55,6 +55,17 @@ file:
   base-upload-path: C:/Users/13629/Desktop/
   base-download-path: C:/Users/13629/Desktop/
 
+ucloud:
+  ufile:
+    public-key: RAUhpMwnOluyRxJIRtn37NtLbg30z49NZ5UICoHr
+    private-key: L2k6iWLd1DPNr3R4Tx_k0L7Y1fq9r2geoK9yda0eczaJx2JG64VIa0NR2NQIGecP
+    bucketName: dreamland
+    region: cn-bj
+    proxySuffix: ufileos.com
+    expires: 31536000
+    folder: car-rental/
+
+
 #日志配置
 logging:
   level:
