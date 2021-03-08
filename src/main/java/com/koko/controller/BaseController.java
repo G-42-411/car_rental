@@ -1,23 +1,16 @@
 package com.koko.controller;
 
 import com.koko.pojo.LoginUser;
-import com.koko.pojo.User;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Controller;
-
-import javax.servlet.http.HttpServletRequest;
-import java.security.Principal;
-import java.util.Collection;
-import java.util.Set;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author 13629
  * @create 2021/2/18 21:23
  */
 @Slf4j
+@RestController
 public class BaseController {
 
     /**
@@ -25,7 +18,6 @@ public class BaseController {
      * @return
      */
     public LoginUser getLoginUser() {
-        LoginUser loginUser = (LoginUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return (LoginUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 

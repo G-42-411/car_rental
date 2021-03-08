@@ -8,7 +8,6 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
@@ -40,6 +39,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         if (StringUtils.isNotEmpty(authHeader) && authHeader.startsWith("Bearer ")) {
             String token = authHeader.substring("Bearer ".length());
             String username = jwtUtil.getUserNameFromToken(token);
+            request.setAttribute("username", username);
             if (StringUtils.isNotEmpty(username) && SecurityContextHolder.getContext().getAuthentication() == null) {
                 LoginUser loginUser = userDetailsService.loadUserByUsername(username);
                 if (ObjectUtils.isNotEmpty(loginUser)) {

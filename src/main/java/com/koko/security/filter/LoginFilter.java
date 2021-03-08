@@ -31,14 +31,12 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
                         authenticationBean.getUsername(), authenticationBean.getPassword());
             } catch (IOException e) {
                 e.printStackTrace();
-                new UsernamePasswordAuthenticationToken(
-                        "", "");
+                authRequest = new UsernamePasswordAuthenticationToken("", "");
             } finally {
                 setDetails(request, authRequest);
                 return this.getAuthenticationManager().authenticate(authRequest);
             }
         }
-
         //transmit it to UsernamePasswordAuthenticationFilter
         else {
             return super.attemptAuthentication(request, response);

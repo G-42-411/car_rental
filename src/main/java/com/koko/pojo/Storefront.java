@@ -9,6 +9,10 @@ public class Storefront {
 
     private String img;
 
+    private String phone;
+
+    private Integer status;
+
     public Integer getId() {
         return id;
     }
@@ -39,5 +43,21 @@ public class Storefront {
 
     public void setImg(String img) {
         this.img = img == null ? null : img.trim();
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

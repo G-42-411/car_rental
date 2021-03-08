@@ -1,5 +1,7 @@
 package com.koko.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Comment {
@@ -7,19 +9,15 @@ public class Comment {
 
     private String content;
 
-    private Date creationTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",  timezone = "GMT+8")
+    private Date createTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",  timezone = "GMT+8")
     private Date modificationTime;
 
-    private Integer userId;
+    private String username;
 
-    private Integer level;
-
-    private Integer parentId;
-
-    private Integer topThumb;
-
-    private Integer revertNumber;
+    private Integer status;
 
     public Integer getId() {
         return id;
@@ -37,12 +35,12 @@ public class Comment {
         this.content = content == null ? null : content.trim();
     }
 
-    public Date getCreationTime() {
-        return creationTime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreationTime(Date creationTime) {
-        this.creationTime = creationTime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public Date getModificationTime() {
@@ -53,43 +51,19 @@ public class Comment {
         this.modificationTime = modificationTime;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
     }
 
-    public Integer getLevel() {
-        return level;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setLevel(Integer level) {
-        this.level = level;
-    }
-
-    public Integer getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
-    }
-
-    public Integer getTopThumb() {
-        return topThumb;
-    }
-
-    public void setTopThumb(Integer topThumb) {
-        this.topThumb = topThumb;
-    }
-
-    public Integer getRevertNumber() {
-        return revertNumber;
-    }
-
-    public void setRevertNumber(Integer revertNumber) {
-        this.revertNumber = revertNumber;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

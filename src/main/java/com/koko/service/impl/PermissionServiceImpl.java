@@ -2,6 +2,7 @@ package com.koko.service.impl;
 
 import com.koko.dao.PermissionMapper;
 import com.koko.pojo.User;
+import com.koko.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ import java.util.Set;
  * @create 2021/1/14 11:10
  */
 @Service
-public class PermissionServiceImpl {
+public class PermissionServiceImpl implements PermissionService {
 
     @Resource
     private PermissionMapper permissionMapper;
@@ -26,10 +27,8 @@ public class PermissionServiceImpl {
      * @param user
      * @return
      */
-    public Set<String> getRolePermissionByUser(User user) {
-        Set<String> permissions = new HashSet<>();
-        permissions.addAll(permissionMapper.selectRolePermissionByUser(user));
-        return permissions;
+    @Override
+    public List<String> getRolePermissionByUser(User user) {
+        return permissionMapper.selectRolePermissionByUser(user);
     }
-
 }

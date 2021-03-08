@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -24,9 +25,9 @@ public class LoginUser implements UserDetails {
     /**
      * 用户权限
      */
-    private Set<GrantedAuthority> authorities;
+    private List<GrantedAuthority> authorities;
 
-    @Override
+
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
     }

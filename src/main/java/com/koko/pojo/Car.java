@@ -5,9 +5,11 @@ public class Car {
 
     private String number;
 
-    private Integer type;
+    private String type;
 
     private String brand;
+
+    private String name;
 
     private String colour;
 
@@ -18,8 +20,6 @@ public class Car {
     private Integer deposit;
 
     private Integer isRenting;
-
-    private String img;
 
     private String description;
 
@@ -39,12 +39,12 @@ public class Car {
         this.number = number == null ? null : number.trim();
     }
 
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setType(String type) {
+        this.type = type == null ? null : type.trim();
     }
 
     public String getBrand() {
@@ -53,6 +53,14 @@ public class Car {
 
     public void setBrand(String brand) {
         this.brand = brand == null ? null : brand.trim();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
     public String getColour() {
@@ -93,14 +101,6 @@ public class Car {
 
     public void setIsRenting(Integer isRenting) {
         this.isRenting = isRenting;
-    }
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img == null ? null : img.trim();
     }
 
     public String getDescription() {

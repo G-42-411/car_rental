@@ -6,4 +6,6 @@ public interface UserStorefrontMapper {
     int insert(UserStorefront record);
 
     int insertSelective(UserStorefront record);
+
+    Integer selectStorefrontIdByUserId(Integer userId);
 }

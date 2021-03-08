@@ -6,4 +6,5 @@ public interface CarStorefrontMapper {
     int insert(CarStorefront record);
 
     int insertSelective(CarStorefront record);
+
 }

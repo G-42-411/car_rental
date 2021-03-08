@@ -2,6 +2,8 @@ package com.koko.security.handler;
 
 import com.alibaba.fastjson.JSONObject;
 import com.koko.pojo.LoginUser;
+import com.koko.pojo.UserRole;
+import com.koko.service.UserRoleService;
 import com.koko.util.JWTUtil;
 import com.koko.dto.CommonResult;
 import lombok.extern.slf4j.Slf4j;

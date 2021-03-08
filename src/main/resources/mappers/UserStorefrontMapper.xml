@@ -28,4 +28,9 @@
       </if>
     </trim>
   </insert>
+  <select id="selectStorefrontIdByUserId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select storefront_id
+    from user_storefront
+    where user_id = #{userId}
+  </select>
 </mapper>

@@ -1,11 +1,10 @@
 package com.koko.service.impl;
 
-import com.koko.dao.PermissionMapper;
 import com.koko.dao.UserMapper;
-import com.koko.dao.UserRoleMapper;
 import com.koko.pojo.LoginUser;
+import com.koko.pojo.Role;
 import com.koko.pojo.User;
-import com.koko.pojo.UserRole;
+import com.koko.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,9 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * 用户验证处理
@@ -34,19 +31,20 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UserMapper userMapper;
 
     @Resource
-    private PermissionMapper permissionMapper;
+    private RoleService roleService;
 
     @Override
     public LoginUser loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userMapper.selectByUsername(username);
+        User user_temp = new User();
+        user_temp.setName(username);
+        User user = userMapper.selectByCondition(user_temp).get(0);
         if (ObjectUtils.isEmpty(user)) {
             throw new UsernameNotFoundException("用户名不存在");
         }
-        Set<String> permissions = permissionMapper.selectRolePermissionByUser(user);
-        Set<GrantedAuthority> authorities = new HashSet<>();
-        for (String permission : permissions) {
-            authorities.add(new SimpleGrantedAuthority(permission));
-        }
+        Role role = roleService.getRole(user.getId());
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(role.getName()));
+
         return new LoginUser(user, authorities);
     }
 

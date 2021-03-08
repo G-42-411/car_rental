@@ -6,7 +6,7 @@
     <result column="number" jdbcType="VARCHAR" property="number" />
     <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
     <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
-    <result column="rent_end_time" jdbcType="TIMESTAMP" property="rentEndTime" />
+    <result column="create_time " jdbcType="TIMESTAMP" property="createTime " />
     <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="status" jdbcType="INTEGER" property="status" />
@@ -14,11 +14,14 @@
     <result column="rent_price" jdbcType="INTEGER" property="rentPrice" />
     <result column="deposit" jdbcType="INTEGER" property="deposit" />
     <result column="acception_officer" jdbcType="VARCHAR" property="acceptionOfficer" />
-    <result column="rent_address" jdbcType="VARCHAR" property="rentAddress" />
+    <result column="pick_up_storefront_id" jdbcType="INTEGER" property="pickUpStorefrontId" />
+    <result column="return_storefront_id" jdbcType="INTEGER" property="returnStorefrontId" />
+    <result column="pay_order_id" jdbcType="INTEGER" property="payOrderId" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, number, start_time, end_time, rent_end_time, id_number, name, status, car_number, 
-    rent_price, deposit, acception_officer, rent_address
+    id, number, start_time, end_time, create_time , id_number, name, status, car_number, 
+    rent_price, deposit, acception_officer, pick_up_storefront_id, return_storefront_id, 
+    pay_order_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -32,15 +35,17 @@
   </delete>
   <insert id="insert" parameterType="com.koko.pojo.Order">
     insert into order (id, number, start_time, 
-      end_time, rent_end_time, id_number, 
+      end_time, create_time , id_number, 
       name, status, car_number, 
       rent_price, deposit, acception_officer, 
-      rent_address)
+      pick_up_storefront_id, return_storefront_id, 
+      pay_order_id)
     values (#{id,jdbcType=INTEGER}, #{number,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
-      #{endTime,jdbcType=TIMESTAMP}, #{rentEndTime,jdbcType=TIMESTAMP}, #{idNumber,jdbcType=VARCHAR}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{createTime ,jdbcType=TIMESTAMP}, #{idNumber,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{carNumber,jdbcType=VARCHAR}, 
       #{rentPrice,jdbcType=INTEGER}, #{deposit,jdbcType=INTEGER}, #{acceptionOfficer,jdbcType=VARCHAR}, 
-      #{rentAddress,jdbcType=VARCHAR})
+      #{pickUpStorefrontId,jdbcType=INTEGER}, #{returnStorefrontId,jdbcType=INTEGER}, 
+      #{payOrderId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.koko.pojo.Order">
     insert into order
@@ -57,8 +62,8 @@
       <if test="endTime != null">
         end_time,
       </if>
-      <if test="rentEndTime != null">
-        rent_end_time,
+      <if test="createTime  != null">
+        create_time ,
       </if>
       <if test="idNumber != null">
         id_number,
@@ -81,8 +86,14 @@
       <if test="acceptionOfficer != null">
         acception_officer,
       </if>
-      <if test="rentAddress != null">
-        rent_address,
+      <if test="pickUpStorefrontId != null">
+        pick_up_storefront_id,
+      </if>
+      <if test="returnStorefrontId != null">
+        return_storefront_id,
+      </if>
+      <if test="payOrderId != null">
+        pay_order_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -98,8 +109,8 @@
       <if test="endTime != null">
         #{endTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="rentEndTime != null">
-        #{rentEndTime,jdbcType=TIMESTAMP},
+      <if test="createTime  != null">
+        #{createTime ,jdbcType=TIMESTAMP},
       </if>
       <if test="idNumber != null">
         #{idNumber,jdbcType=VARCHAR},
@@ -122,13 +133,19 @@
       <if test="acceptionOfficer != null">
         #{acceptionOfficer,jdbcType=VARCHAR},
       </if>
-      <if test="rentAddress != null">
-        #{rentAddress,jdbcType=VARCHAR},
+      <if test="pickUpStorefrontId != null">
+        #{pickUpStorefrontId,jdbcType=INTEGER},
+      </if>
+      <if test="returnStorefrontId != null">
+        #{returnStorefrontId,jdbcType=INTEGER},
+      </if>
+      <if test="payOrderId != null">
+        #{payOrderId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.koko.pojo.Order">
-    update order
+    update `order`
     <set>
       <if test="number != null">
         number = #{number,jdbcType=VARCHAR},
@@ -139,8 +156,8 @@
       <if test="endTime != null">
         end_time = #{endTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="rentEndTime != null">
-        rent_end_time = #{rentEndTime,jdbcType=TIMESTAMP},
+      <if test="createTime  != null">
+        create_time  = #{createTime ,jdbcType=TIMESTAMP},
       </if>
       <if test="idNumber != null">
         id_number = #{idNumber,jdbcType=VARCHAR},
@@ -163,8 +180,14 @@
       <if test="acceptionOfficer != null">
         acception_officer = #{acceptionOfficer,jdbcType=VARCHAR},
       </if>
-      <if test="rentAddress != null">
-        rent_address = #{rentAddress,jdbcType=VARCHAR},
+      <if test="pickUpStorefrontId != null">
+        pick_up_storefront_id = #{pickUpStorefrontId,jdbcType=INTEGER},
+      </if>
+      <if test="returnStorefrontId != null">
+        return_storefront_id = #{returnStorefrontId,jdbcType=INTEGER},
+      </if>
+      <if test="payOrderId != null">
+        pay_order_id = #{payOrderId,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -174,7 +197,7 @@
     set number = #{number,jdbcType=VARCHAR},
       start_time = #{startTime,jdbcType=TIMESTAMP},
       end_time = #{endTime,jdbcType=TIMESTAMP},
-      rent_end_time = #{rentEndTime,jdbcType=TIMESTAMP},
+      create_time  = #{createTime ,jdbcType=TIMESTAMP},
       id_number = #{idNumber,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
@@ -182,7 +205,68 @@
       rent_price = #{rentPrice,jdbcType=INTEGER},
       deposit = #{deposit,jdbcType=INTEGER},
       acception_officer = #{acceptionOfficer,jdbcType=VARCHAR},
-      rent_address = #{rentAddress,jdbcType=VARCHAR}
+      pick_up_storefront_id = #{pickUpStorefrontId,jdbcType=INTEGER},
+      return_storefront_id = #{returnStorefrontId,jdbcType=INTEGER},
+      pay_order_id = #{payOrderId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectBySelective" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from `order`
+    <where>
+      <trim prefixOverrides="AND |OR ">
+        <if test="id != null">
+          id = #{id,jdbcType=INTEGER}
+        </if>
+        <if test="number != null and number != ''">
+          and number = #{number,jdbcType=VARCHAR}
+        </if>
+        <if test="startTime != null and endTime != null">
+          and create_time  &gt;= #{startTime ,jdbcType=TIMESTAMP}
+          and create_time  &lt;= #{endTime ,jdbcType=TIMESTAMP}
+        </if>
+        <if test="idNumber != null and idNumber != ''">
+          and id_number = #{idNumber,jdbcType=VARCHAR}
+        </if>
+        <if test="name != null and name != ''">
+          and name = #{name,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null and status != ''">
+          and status = #{status,jdbcType=INTEGER}
+        </if>
+        <if test="carNumber != null and carNumber != ''">
+          and car_number = #{carNumber,jdbcType=VARCHAR}
+        </if>
+        <if test="rentPrice != null and rentPrice != ''">
+          and rent_price = #{rentPrice,jdbcType=INTEGER}
+        </if>
+        <if test="deposit != null and deposit != ''">
+          and deposit = #{deposit,jdbcType=INTEGER}
+        </if>
+        <if test="acceptionOfficer != null and acceptionOfficer != ''">
+          and acception_officer = #{acceptionOfficer,jdbcType=VARCHAR}
+        </if>
+        <if test="pickUpStorefrontId != null and pickUpStorefrontId != ''">
+          and pick_up_storefront_id = #{pickUpStorefrontId,jdbcType=VARCHAR}
+        </if>
+        <if test="returnStorefrontId != null and returnStorefrontId != ''">
+          and return_storefront_id = #{returnStorefrontId,jdbcType=VARCHAR}
+        </if>
+        <if test="payOrderId != null and payOrderId != ''">
+          and pay_order_id = #{payOrderId,jdbcType=VARCHAR}
+        </if>
+      </trim>
+    </where>
+  </select>
+  <select id="selectRevenue" resultType="java.util.Map">
+    SELECT DATE_FORMAT(end_time, '%Y-%m') as time,
+           sum(rent_price)                   money
+    FROM `order`
+    where pick_up_storefront_id = #{storefrontId}
+      and YEAR(end_time) = #{year}
+    GROUP BY time
+    ORDER BY time
+  </select>
 </mapper>

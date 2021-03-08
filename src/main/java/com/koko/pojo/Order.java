@@ -1,5 +1,7 @@
 package com.koko.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Order {
@@ -7,11 +9,14 @@ public class Order {
 
     private String number;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     private Date startTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     private Date endTime;
 
-    private Date rentEndTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
+    private Date createTime;
 
     private String idNumber;
 
@@ -27,7 +32,11 @@ public class Order {
 
     private String acceptionOfficer;
 
-    private String rentAddress;
+    private Integer pickUpStorefrontId;
+
+    private Integer returnStorefrontId;
+
+    private Integer payOrderId;
 
     public Integer getId() {
         return id;
@@ -61,12 +70,12 @@ public class Order {
         this.endTime = endTime;
     }
 
-    public Date getRentEndTime() {
-        return rentEndTime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setRentEndTime(Date rentEndTime) {
-        this.rentEndTime = rentEndTime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public String getIdNumber() {
@@ -125,11 +134,27 @@ public class Order {
         this.acceptionOfficer = acceptionOfficer == null ? null : acceptionOfficer.trim();
     }
 
-    public String getRentAddress() {
-        return rentAddress;
+    public Integer getPickUpStorefrontId() {
+        return pickUpStorefrontId;
     }
 
-    public void setRentAddress(String rentAddress) {
-        this.rentAddress = rentAddress == null ? null : rentAddress.trim();
+    public void setPickUpStorefrontId(Integer pickUpStorefrontId) {
+        this.pickUpStorefrontId = pickUpStorefrontId;
+    }
+
+    public Integer getReturnStorefrontId() {
+        return returnStorefrontId;
+    }
+
+    public void setReturnStorefrontId(Integer returnStorefrontId) {
+        this.returnStorefrontId = returnStorefrontId;
+    }
+
+    public Integer getPayOrderId() {
+        return payOrderId;
+    }
+
+    public void setPayOrderId(Integer payOrderId) {
+        this.payOrderId = payOrderId;
     }
 }

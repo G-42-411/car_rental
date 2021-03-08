@@ -1,7 +1,9 @@
 package com.koko.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.ToString;
 
+@ToString
 public class User {
     private Integer id;
 
@@ -15,14 +17,13 @@ public class User {
 
     private String phone;
 
-    @JsonIgnore
     private String password;
 
     private String email;
 
     private String idNumber;
 
-    private String headPortrait;
+    private String avatar;
 
     public Integer getId() {
         return id;
@@ -96,27 +97,11 @@ public class User {
         this.idNumber = idNumber == null ? null : idNumber.trim();
     }
 
-    public String getHeadPortrait() {
-        return headPortrait;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setHeadPortrait(String headPortrait) {
-        this.headPortrait = headPortrait == null ? null : headPortrait.trim();
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", sex=" + sex +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", idNumber='" + idNumber + '\'' +
-                ", headPortrait='" + headPortrait + '\'' +
-                '}';
+    public void setAvatar(String avatar) {
+        this.avatar = avatar == null ? null : avatar.trim();
     }
 }

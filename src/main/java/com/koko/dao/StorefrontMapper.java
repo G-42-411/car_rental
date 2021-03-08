@@ -2,6 +2,8 @@ package com.koko.dao;
 
 import com.koko.pojo.Storefront;
 
+import java.util.List;
+
 public interface StorefrontMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface StorefrontMapper {
     int updateByPrimaryKeySelective(Storefront record);
 
     int updateByPrimaryKey(Storefront record);
+
+    List<Storefront> selectBySelective(Storefront record);
 }

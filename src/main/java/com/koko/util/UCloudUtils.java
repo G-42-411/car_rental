@@ -61,10 +61,10 @@ public class UCloudUtils {
                     .toBucket(bucketName)
                     .execute();
             if (response != null && response.getRetCode() == 0) {
-                String url = UfileClient.object(objectAuthorization, config)
-                        .getDownloadUrlFromPrivateBucket(generatedFileName, bucketName, expires)
-                        .createUrl();
-                return url;
+//                String url = UfileClient.object(objectAuthorization, config)
+//                        .getDownloadUrlFromPrivateBucket(generatedFileName, bucketName, expires)
+//                        .createUrl();
+                return "http://dreamland.cn-bj.ufileos.com/car-rental/" + generatedFileName;
             } else {
                 throw new CustomizeException(ResultStatus.FILE_UPLOAD_ERROR);
             }

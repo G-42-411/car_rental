@@ -4,18 +4,18 @@
   <resultMap id="BaseResultMap" type="com.koko.pojo.Car">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="number" jdbcType="VARCHAR" property="number" />
-    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="brand" jdbcType="VARCHAR" property="brand" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="colour" jdbcType="VARCHAR" property="colour" />
     <result column="price" jdbcType="INTEGER" property="price" />
     <result column="rent_price" jdbcType="INTEGER" property="rentPrice" />
     <result column="deposit" jdbcType="INTEGER" property="deposit" />
     <result column="is_renting" jdbcType="INTEGER" property="isRenting" />
-    <result column="img" jdbcType="VARCHAR" property="img" />
     <result column="description" jdbcType="VARCHAR" property="description" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, number, type, brand, colour, price, rent_price, deposit, is_renting, img, description
+    id, number, type, brand, name, colour, price, rent_price, deposit, is_renting, description
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -29,13 +29,13 @@
   </delete>
   <insert id="insert" parameterType="com.koko.pojo.Car">
     insert into car (id, number, type, 
-      brand, colour, price, 
-      rent_price, deposit, is_renting, 
-      img, description)
-    values (#{id,jdbcType=INTEGER}, #{number,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
-      #{brand,jdbcType=VARCHAR}, #{colour,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
-      #{rentPrice,jdbcType=INTEGER}, #{deposit,jdbcType=INTEGER}, #{isRenting,jdbcType=INTEGER}, 
-      #{img,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR})
+      brand, name, colour, 
+      price, rent_price, deposit, 
+      is_renting, description)
+    values (#{id,jdbcType=INTEGER}, #{number,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{brand,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{colour,jdbcType=VARCHAR}, 
+      #{price,jdbcType=INTEGER}, #{rentPrice,jdbcType=INTEGER}, #{deposit,jdbcType=INTEGER}, 
+      #{isRenting,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.koko.pojo.Car">
     insert into car
@@ -52,6 +52,9 @@
       <if test="brand != null">
         brand,
       </if>
+      <if test="name != null">
+        name,
+      </if>
       <if test="colour != null">
         colour,
       </if>
@@ -67,9 +70,6 @@
       <if test="isRenting != null">
         is_renting,
       </if>
-      <if test="img != null">
-        img,
-      </if>
       <if test="description != null">
         description,
       </if>
@@ -82,10 +82,13 @@
         #{number,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
-        #{type,jdbcType=INTEGER},
+        #{type,jdbcType=VARCHAR},
       </if>
       <if test="brand != null">
         #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
       </if>
       <if test="colour != null">
         #{colour,jdbcType=VARCHAR},
@@ -102,9 +105,6 @@
       <if test="isRenting != null">
         #{isRenting,jdbcType=INTEGER},
       </if>
-      <if test="img != null">
-        #{img,jdbcType=VARCHAR},
-      </if>
       <if test="description != null">
         #{description,jdbcType=VARCHAR},
       </if>
@@ -117,10 +117,13 @@
         number = #{number,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
-        type = #{type,jdbcType=INTEGER},
+        type = #{type,jdbcType=VARCHAR},
       </if>
       <if test="brand != null">
         brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="colour != null">
         colour = #{colour,jdbcType=VARCHAR},
@@ -137,9 +140,6 @@
       <if test="isRenting != null">
         is_renting = #{isRenting,jdbcType=INTEGER},
       </if>
-      <if test="img != null">
-        img = #{img,jdbcType=VARCHAR},
-      </if>
       <if test="description != null">
         description = #{description,jdbcType=VARCHAR},
       </if>
@@ -149,15 +149,73 @@
   <update id="updateByPrimaryKey" parameterType="com.koko.pojo.Car">
     update car
     set number = #{number,jdbcType=VARCHAR},
-      type = #{type,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
       brand = #{brand,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
       colour = #{colour,jdbcType=VARCHAR},
       price = #{price,jdbcType=INTEGER},
       rent_price = #{rentPrice,jdbcType=INTEGER},
       deposit = #{deposit,jdbcType=INTEGER},
       is_renting = #{isRenting,jdbcType=INTEGER},
-      img = #{img,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from car
+  </select>
+  <select id="selectByStorefront" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from car
+    left join car_storefront on car.id = car_storefront.car_id
+    left join storefront s on car_storefront.storefront_id = s.id
+    where s.id = #{id}
+  </select>
+
+  <select id="selectByCondition" resultMap="BaseResultMap" parameterType="com.koko.dto.CarDto">
+    select
+    <include refid="Base_Column_List"/>
+    from car_storefront
+    left join car c on car_storefront.car_id = c.id
+    <where>
+      <trim suffixOverrides="," prefixOverrides="AND |OR ">
+        <if test="number != null and number != ''">
+          and number = #{number,jdbcType=INTEGER}
+        </if>
+        <if test="type != null and type != ''">
+          and type = #{type,jdbcType=INTEGER}
+        </if>
+        <if test="brand != null and brand != ''">
+          and brand = #{brand,jdbcType=VARCHAR}
+        </if>
+        <if test="name != null and name != ''">
+          and name = #{name,jdbcType=VARCHAR}
+        </if>
+        <if test="colour != null and colour != ''">
+          and colour = #{colour,jdbcType=VARCHAR}
+        </if>
+        <if test="price != null and price != ''">
+          and price = #{price,jdbcType=INTEGER}
+        </if>
+        <if test="rentPrice != null and rentPrice != ''">
+          and rent_price = #{rentPrice,jdbcType=INTEGER}
+        </if>
+        <if test="deposit != null and deposit != ''">
+          and deposit = #{deposit,jdbcType=INTEGER}
+        </if>
+        <if test="isRenting != null and isRenting != ''">
+          and is_renting = #{isRenting,jdbcType=INTEGER}
+        </if>
+        <if test="description != null and description != ''">
+          and description = #{description,jdbcType=VARCHAR}
+        </if>
+        <if test="storefrontId != null">
+          and car_storefront.storefront_id = #{storefrontId}
+        </if>
+      </trim>
+    </where>
+  </select>
 </mapper>
