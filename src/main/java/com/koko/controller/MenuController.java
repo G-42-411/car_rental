@@ -3,6 +3,7 @@ package com.koko.controller;
 import com.koko.dto.CommonResult;
 import com.koko.pojo.Menu;
 import com.koko.service.MenuService;
+import com.koko.util.ServletTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,8 +22,8 @@ public class MenuController {
     private MenuService menuService;
 
     @GetMapping("/menu")
-    public CommonResult menu(HttpServletRequest request){
-        String username = (String)request.getAttribute("username");
+    public CommonResult menu(){
+        String username = (String) ServletTool.getRequest().getAttribute("username");
         List<Menu> menus = menuService.getMenuByCurrentUser(username);
         return CommonResult.ok(menus);
     }

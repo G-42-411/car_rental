@@ -1,14 +1,13 @@
 package com.koko.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
 public class CheckList {
     private Integer id;
 
-    private Integer number;
+    private String number;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     private Date createTime;
@@ -19,7 +18,7 @@ public class CheckList {
 
     private Double compensationAmount;
 
-    private Integer orderNumber;
+    private String orderNumber;
 
     private String operator;
 
@@ -31,12 +30,12 @@ public class CheckList {
         this.id = id;
     }
 
-    public Integer getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(Integer number) {
-        this.number = number;
+    public void setNumber(String number) {
+        this.number = number == null ? null : number.trim();
     }
 
     public Date getCreateTime() {
@@ -71,12 +70,12 @@ public class CheckList {
         this.compensationAmount = compensationAmount;
     }
 
-    public Integer getOrderNumber() {
+    public String getOrderNumber() {
         return orderNumber;
     }
 
-    public void setOrderNumber(Integer orderNumber) {
-        this.orderNumber = orderNumber;
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber == null ? null : orderNumber.trim();
     }
 
     public String getOperator() {

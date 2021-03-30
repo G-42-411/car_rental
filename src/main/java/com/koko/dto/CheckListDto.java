@@ -13,9 +13,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CheckListDto {
-    private Integer number;
+    private String number;
     private String question;
-    private Integer orderNumber;
+    private String orderNumber;
     private String operator;
     private String startTime;
     private String endTime;

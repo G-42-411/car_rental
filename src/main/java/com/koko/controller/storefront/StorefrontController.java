@@ -1,5 +1,6 @@
 package com.koko.controller.storefront;
 
+import com.alibaba.fastjson.JSONArray;
 import com.koko.dto.CommonResult;
 import com.koko.pojo.Storefront;
 import com.koko.service.StorefrontService;
@@ -45,6 +46,12 @@ public class StorefrontController {
     public CommonResult deleteStorefront(Integer id){
         storefrontService.delete(id);
         return CommonResult.ok("删除成功");
+    }
+
+    @GetMapping("/getStorefrontInfoList")
+    public CommonResult getStorefrontInfoList(){
+        JSONArray result = storefrontService.selectDistinctAddress();
+        return CommonResult.ok(result);
     }
 
 }

@@ -19,4 +19,6 @@ public interface CheckListService {
     List<CheckList> select(CheckList checkList);
 
     List<CheckList> selectByDto(CheckListDto checkListDto);
+
+    List<CheckList> select();
 }

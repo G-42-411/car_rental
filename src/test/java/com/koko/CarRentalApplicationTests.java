@@ -3,6 +3,7 @@ package com.koko;
 import cn.ucloud.ufile.exception.UfileFileException;
 import cn.ucloud.ufile.util.MimeTypeUtil;
 import com.alibaba.fastjson.JSONArray;
+import com.koko.config.AlipayConfig;
 import com.koko.dao.CarMapper;
 import com.koko.dao.MenuMapper;
 import com.koko.dao.UserMapper;
@@ -12,6 +13,7 @@ import com.koko.service.RoleService;
 import com.koko.service.UserService;
 import com.koko.util.DateUtils;
 import com.koko.util.ObjectUtils;
+import com.koko.util.OrderUtils;
 import com.koko.util.UCloudUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -54,6 +56,8 @@ class CarRentalApplicationTests {
     @Autowired
     private RoleService roleService;
 
+    @Autowired
+    private AlipayConfig alipayConfig;
 
     private final Logger log = LoggerFactory.getLogger(CarRentalApplicationTests.class);
 
@@ -162,12 +166,16 @@ class CarRentalApplicationTests {
 //        List< Integer> list = new ArrayList< Integer>(Collections.nCopies(60,0));
 //        System.out.println(list);
 
-        String s = "陕西省西安市高新区";
-        int i = s.indexOf("省");
-        int j = s.indexOf("市");
-        String substring = s.substring(i+1, j+1);
-        System.out.println(substring);
+//        String s = "陕西省西安市高新区";
+//        int i = s.indexOf("省");
+//        int j = s.indexOf("市");
+//        String substring = s.substring(i+1, j+1);
+//        System.out.println(substring);
 
+//        String s = OrderUtils.checkListNumber();
+//        System.out.println(s);
+
+        System.out.println(alipayConfig.getAppId());
     }
 
 }

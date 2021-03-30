@@ -7,6 +7,8 @@ import com.koko.pojo.User;
 import com.koko.service.PermissionService;
 import com.koko.service.RoleService;
 import com.koko.service.UserService;
+import com.koko.service.UserStorefrontService;
+import com.koko.util.ServletTool;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,26 +35,30 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserStorefrontService userStorefrontService;
+
 
     /**
-     * 能直接通过loginUser.getAuthorities()拿权限，否则会在返回序列化时将数组内的元素变成一个个map对象,前端在取值的时候会比较麻烦
+     * 不能直接通过loginUser.getAuthorities()拿权限，否则会在返回序列化时将数组内的元素变成一个个map对象,前端在取值的时候会比较麻烦
      * 原因：权限数组List<GrantedAuthority> authorities中的值为GrantedAuthority类型
      * GrantedAuthority是一个接口，它有一个方法：String getAuthority()， 返回时会被序列化成一个属性
      *
      */
     @GetMapping("/getUserInfo")
-    public CommonResult getUserInfo(String username) {
-//        LoginUser loginUser = (LoginUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        User user = loginUser.getUser();
+    public CommonResult getUserInfo() {
+        String username = (String)ServletTool.getRequest().getAttribute("username");
         User temp = new User();
         temp.setName(username);
         User user = userService.getUserByCondition(temp).get(0);
 
+        Integer storefrontId = userStorefrontService.queryStorefrontId(user.getId());
 //        List<String> authorities = permissionService.getRolePermissionByUser(user);
         Role role = roleService.getRole(user.getId());
         Map<String, Object> map = new HashMap<>();
         map.put("user", user);
         map.put("authorities", role.getType());
+        map.put("storefrontId", storefrontId);
         return CommonResult.ok(map);
     }
 

@@ -43,11 +43,13 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public List<Menu> getMenuByCurrentUser(String username) {
+        System.out.println("菜单查询");
         User user = new User();
         user.setName(username);
         System.out.println(user);
         User user1 = userService.getUserByCondition(user).get(0);
         Role role = roleService.getRole(user1.getId());
+        System.out.println(role.getId());
 
         List<Menu> menus = menuMapper.selectByRoleId(role.getId());
         System.out.println(menus);

@@ -83,4 +83,10 @@ public class CarController {
         return CommonResult.ok("删除成功");
     }
 
+    @PostMapping("/queryBySelective")
+    public CommonResult queryBySelective(@RequestBody JSONObject jsonObject){
+        JSONObject retultObj = carService.queryBySelective(jsonObject);
+        return CommonResult.ok(retultObj);
+    }
+
 }

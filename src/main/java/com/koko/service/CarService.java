@@ -1,6 +1,7 @@
 package com.koko.service;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.koko.dto.CarDto;
 import com.koko.pojo.Car;
 import com.koko.pojo.Storefront;
@@ -36,5 +37,7 @@ public interface CarService {
     int updateCarInfoByCondition(Car car);
 
     int deleteByCarId(Integer id);
+
+    JSONObject queryBySelective(JSONObject jsonObject);
 
 }

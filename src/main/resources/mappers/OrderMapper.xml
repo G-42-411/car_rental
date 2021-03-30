@@ -216,7 +216,7 @@
     <include refid="Base_Column_List" />
     from `order`
     <where>
-      <trim prefixOverrides="AND |OR ">
+      <trim prefixOverrides="AND |OR " suffixOverrides="AND |OR ">
         <if test="id != null">
           id = #{id,jdbcType=INTEGER}
         </if>
@@ -248,14 +248,22 @@
         <if test="acceptionOfficer != null and acceptionOfficer != ''">
           and acception_officer = #{acceptionOfficer,jdbcType=VARCHAR}
         </if>
-        <if test="pickUpStorefrontId != null and pickUpStorefrontId != ''">
-          and pick_up_storefront_id = #{pickUpStorefrontId,jdbcType=VARCHAR}
-        </if>
-        <if test="returnStorefrontId != null and returnStorefrontId != ''">
-          and return_storefront_id = #{returnStorefrontId,jdbcType=VARCHAR}
-        </if>
         <if test="payOrderId != null and payOrderId != ''">
           and pay_order_id = #{payOrderId,jdbcType=VARCHAR}
+        </if>
+
+        <if test="pickUpStorefrontId != null and returnStorefrontId == null">
+          and pick_up_storefront_id = #{pickUpStorefrontId,jdbcType=INTEGER}
+        </if>
+        <if test="returnStorefrontId != null and pickUpStorefrontId == null">
+           and return_storefront_id = #{returnStorefrontId,jdbcType=INTEGER}
+        </if>
+        <if test="pickUpStorefrontId != null and returnStorefrontId != null">
+          and
+          (
+          pick_up_storefront_id = #{pickUpStorefrontId,jdbcType=INTEGER}
+          or return_storefront_id = #{returnStorefrontId,jdbcType=INTEGER}
+          )
         </if>
       </trim>
     </where>

@@ -28,4 +28,6 @@ public class CommentDto {
 
     private List<String> imgList;
 
+    private String avatar;
+
 }

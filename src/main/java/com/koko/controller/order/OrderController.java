@@ -2,6 +2,7 @@ package com.koko.controller.order;
 
 import com.alibaba.fastjson.JSONObject;
 import com.koko.dto.CommonResult;
+import com.koko.dto.OrderDto;
 import com.koko.pojo.Order;
 import com.koko.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
@@ -24,10 +25,11 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping("/getOrderList")
-    public CommonResult getOrderList(@RequestBody Order order){
-        List<Order> orders = orderService.queryByCondition(order);
+    public CommonResult getOrderList(@RequestBody OrderDto orderDto){
+        List<Order> orders = orderService.queryByCondition(orderDto);
         return CommonResult.ok(orders);
     }
+
 
     @PostMapping("/getOrderDetails")
     public CommonResult getOrderDetails(@RequestBody Order order){

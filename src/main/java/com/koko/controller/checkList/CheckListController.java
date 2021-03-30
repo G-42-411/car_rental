@@ -24,9 +24,9 @@ public class CheckListController {
     @Autowired
     private CheckListService checkListService;
 
-    @PostMapping("/getCheckList")
-    public CommonResult getCheckList(@RequestBody CheckList checkList){
-        List<CheckList> checkLists = checkListService.select(checkList);
+    @GetMapping("/getCheckList")
+    public CommonResult getCheckList(){
+        List<CheckList> checkLists = checkListService.select();
         return CommonResult.ok(checkLists);
     }
 

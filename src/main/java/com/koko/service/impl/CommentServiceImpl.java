@@ -5,8 +5,10 @@ import com.koko.dao.CommonMapper;
 import com.koko.dto.CommentDto;
 import com.koko.pojo.Comment;
 import com.koko.pojo.CommentImg;
+import com.koko.pojo.User;
 import com.koko.service.CommentImgService;
 import com.koko.service.CommentService;
+import com.koko.service.UserService;
 import com.koko.util.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +31,9 @@ public class CommentServiceImpl implements CommentService {
 
     @Autowired
     private CommonMapper commonMapper;
+
+    @Autowired
+    private UserService userService;
 
 
     @Override
@@ -62,9 +67,13 @@ public class CommentServiceImpl implements CommentService {
         List<Comment> comments = commentMapper.selectAll();
         for (Comment comment : comments) {
             CommentDto commentDto = new CommentDto();
+            User temp_user = new User();
+            temp_user.setName(comment.getUsername());
+            User user = userService.getUserByCondition(temp_user).get(0);
             List<String> imgList = commentImgService.query(comment.getId());
             ObjectUtils.cloneBean(commentDto, comment);
             commentDto.setImgList(imgList);
+            commentDto.setAvatar(user.getAvatar());
             commentDtoList.add(commentDto);
         }
         return commentDtoList;

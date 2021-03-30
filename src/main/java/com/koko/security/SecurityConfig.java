@@ -20,6 +20,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+import javax.sql.DataSource;
 
 /**
  * @author 13629
@@ -46,6 +50,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
+
+    @Autowired
+    private DataSource dataSource;
 
     /**
      * 配置用户认证
@@ -85,7 +92,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return loginFilter;
     }
 
-
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository(){
+        //使用JDBC
+        JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+        jdbcTokenRepository.setDataSource(dataSource);
+        //创建数据库，只能执行一次，第二次之后需要注掉，否则报错数据库已存在
+//        jdbcTokenRepository.setCreateTableOnStartup(true);
+        return jdbcTokenRepository;
+    }
 
     /**
      * 配置访问控制
@@ -129,6 +144,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessHandler(ajaxLogoutSuccessHandler)     //退出成功
                 .permitAll();
 
+        http.rememberMe()
+                .tokenValiditySeconds(60 * 60 * 24 * 30)
+                .userDetailsService(userDetailsService)
+                .tokenRepository(persistentTokenRepository())
+                .rememberMeParameter("rememberMe");
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class); //token过滤器
         http.addFilterAt(loginFilter(), UsernamePasswordAuthenticationFilter.class);
     }

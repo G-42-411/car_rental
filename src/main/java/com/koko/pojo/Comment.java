@@ -1,7 +1,5 @@
 package com.koko.pojo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.util.Date;
 
 public class Comment {
@@ -9,15 +7,23 @@ public class Comment {
 
     private String content;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",  timezone = "GMT+8")
     private Date createTime;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",  timezone = "GMT+8")
     private Date modificationTime;
 
     private String username;
 
     private Integer status;
+
+    private Integer storefrontId;
+
+    private Integer hardwareLevel;
+
+    private Integer cleanLevel;
+
+    private Integer shuttleLevel;
+
+    private Integer serveLevel;
 
     public Integer getId() {
         return id;
@@ -65,5 +71,45 @@ public class Comment {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Integer getStorefrontId() {
+        return storefrontId;
+    }
+
+    public void setStorefrontId(Integer storefrontId) {
+        this.storefrontId = storefrontId;
+    }
+
+    public Integer getHardwareLevel() {
+        return hardwareLevel;
+    }
+
+    public void setHardwareLevel(Integer hardwareLevel) {
+        this.hardwareLevel = hardwareLevel;
+    }
+
+    public Integer getCleanLevel() {
+        return cleanLevel;
+    }
+
+    public void setCleanLevel(Integer cleanLevel) {
+        this.cleanLevel = cleanLevel;
+    }
+
+    public Integer getShuttleLevel() {
+        return shuttleLevel;
+    }
+
+    public void setShuttleLevel(Integer shuttleLevel) {
+        this.shuttleLevel = shuttleLevel;
+    }
+
+    public Integer getServeLevel() {
+        return serveLevel;
+    }
+
+    public void setServeLevel(Integer serveLevel) {
+        this.serveLevel = serveLevel;
     }
 }

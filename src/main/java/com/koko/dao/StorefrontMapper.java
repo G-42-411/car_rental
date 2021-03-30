@@ -18,4 +18,10 @@ public interface StorefrontMapper {
     int updateByPrimaryKey(Storefront record);
 
     List<Storefront> selectBySelective(Storefront record);
+
+    List<Storefront> selectAll();
+
+    List<String> selectStorefrontAddress();
+
+    List<String> selectLikeAddress(String address);
 }

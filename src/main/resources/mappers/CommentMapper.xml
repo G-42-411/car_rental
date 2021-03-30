@@ -1,110 +1,170 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.koko.dao.CommentMapper">
-    <resultMap id="BaseResultMap" type="com.koko.pojo.Comment">
-        <id column="id" jdbcType="INTEGER" property="id"/>
-        <result column="content" jdbcType="VARCHAR" property="content"/>
-        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
-        <result column="modification_time" jdbcType="TIMESTAMP" property="modificationTime"/>
-        <result column="username" jdbcType="VARCHAR" property="username"/>
-        <result column="status" jdbcType="INTEGER" property="status"/>
-    </resultMap>
-    <sql id="Base_Column_List">
-        id, content, create_time, modification_time, username, status
-    </sql>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from comment
-        where id = #{id,jdbcType=INTEGER}
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        delete
-        from comment
-        where id = #{id,jdbcType=INTEGER}
-    </delete>
-    <insert id="insert" parameterType="com.koko.pojo.Comment">
-        insert into comment (id, content, create_time,
-                             modification_time, username, status)
-        values (#{id,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
-                #{modificationTime,jdbcType=TIMESTAMP}, #{username,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER})
-    </insert>
-    <insert id="insertSelective" parameterType="com.koko.pojo.Comment">
-        insert into comment
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
-            <if test="content != null">
-                content,
-            </if>
-            <if test="createTime != null">
-                create_time,
-            </if>
-            <if test="modificationTime != null">
-                modification_time,
-            </if>
-            <if test="username != null">
-                username,
-            </if>
-            <if test="status != null">
-                status,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=INTEGER},
-            </if>
-            <if test="content != null">
-                #{content,jdbcType=VARCHAR},
-            </if>
-            <if test="createTime != null">
-                #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="modificationTime != null">
-                #{modificationTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="username != null">
-                #{username,jdbcType=VARCHAR},
-            </if>
-            <if test="status != null">
-                #{status,jdbcType=INTEGER},
-            </if>
-        </trim>
-    </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.koko.pojo.Comment">
-        update comment
-        <set>
-            <if test="content != null">
-                content = #{content,jdbcType=VARCHAR},
-            </if>
-            <if test="createTime != null">
-                create_time = #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="modificationTime != null">
-                modification_time = #{modificationTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="username != null">
-                username = #{username,jdbcType=VARCHAR},
-            </if>
-            <if test="status != null">
-                status = #{status,jdbcType=INTEGER},
-            </if>
-        </set>
-        where id = #{id,jdbcType=INTEGER}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="com.koko.pojo.Comment">
-        update comment
-        set content           = #{content,jdbcType=VARCHAR},
-            create_time       = #{createTime,jdbcType=TIMESTAMP},
-            modification_time = #{modificationTime,jdbcType=TIMESTAMP},
-            username          = #{username,jdbcType=VARCHAR},
-            status            = #{status,jdbcType=INTEGER}
-        where id = #{id,jdbcType=INTEGER}
-    </update>
-    <select id="selectAll" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from comment
-    </select>
+  <resultMap id="BaseResultMap" type="com.koko.pojo.Comment">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modification_time" jdbcType="TIMESTAMP" property="modificationTime" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="storefront_id" jdbcType="INTEGER" property="storefrontId" />
+    <result column="hardware_level" jdbcType="INTEGER" property="hardwareLevel" />
+    <result column="clean_level" jdbcType="INTEGER" property="cleanLevel" />
+    <result column="shuttle_level" jdbcType="INTEGER" property="shuttleLevel" />
+    <result column="serve_level" jdbcType="INTEGER" property="serveLevel" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, content, create_time, modification_time, username, status, storefront_id, hardware_level, 
+    clean_level, shuttle_level, serve_level
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from comment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.koko.pojo.Comment">
+    insert into comment (id, content, create_time, 
+      modification_time, username, status, 
+      storefront_id, hardware_level, clean_level, 
+      shuttle_level, serve_level)
+    values (#{id,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modificationTime,jdbcType=TIMESTAMP}, #{username,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{storefrontId,jdbcType=INTEGER}, #{hardwareLevel,jdbcType=INTEGER}, #{cleanLevel,jdbcType=INTEGER}, 
+      #{shuttleLevel,jdbcType=INTEGER}, #{serveLevel,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.koko.pojo.Comment">
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modificationTime != null">
+        modification_time,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="storefrontId != null">
+        storefront_id,
+      </if>
+      <if test="hardwareLevel != null">
+        hardware_level,
+      </if>
+      <if test="cleanLevel != null">
+        clean_level,
+      </if>
+      <if test="shuttleLevel != null">
+        shuttle_level,
+      </if>
+      <if test="serveLevel != null">
+        serve_level,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modificationTime != null">
+        #{modificationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="storefrontId != null">
+        #{storefrontId,jdbcType=INTEGER},
+      </if>
+      <if test="hardwareLevel != null">
+        #{hardwareLevel,jdbcType=INTEGER},
+      </if>
+      <if test="cleanLevel != null">
+        #{cleanLevel,jdbcType=INTEGER},
+      </if>
+      <if test="shuttleLevel != null">
+        #{shuttleLevel,jdbcType=INTEGER},
+      </if>
+      <if test="serveLevel != null">
+        #{serveLevel,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.koko.pojo.Comment">
+    update comment
+    <set>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modificationTime != null">
+        modification_time = #{modificationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="storefrontId != null">
+        storefront_id = #{storefrontId,jdbcType=INTEGER},
+      </if>
+      <if test="hardwareLevel != null">
+        hardware_level = #{hardwareLevel,jdbcType=INTEGER},
+      </if>
+      <if test="cleanLevel != null">
+        clean_level = #{cleanLevel,jdbcType=INTEGER},
+      </if>
+      <if test="shuttleLevel != null">
+        shuttle_level = #{shuttleLevel,jdbcType=INTEGER},
+      </if>
+      <if test="serveLevel != null">
+        serve_level = #{serveLevel,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.koko.pojo.Comment">
+    update comment
+    set content = #{content,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modification_time = #{modificationTime,jdbcType=TIMESTAMP},
+      username = #{username,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      storefront_id = #{storefrontId,jdbcType=INTEGER},
+      hardware_level = #{hardwareLevel,jdbcType=INTEGER},
+      clean_level = #{cleanLevel,jdbcType=INTEGER},
+      shuttle_level = #{shuttleLevel,jdbcType=INTEGER},
+      serve_level = #{serveLevel,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from comment
+  </select>
 </mapper>

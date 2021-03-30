@@ -36,5 +36,11 @@ public class CarDto {
 
     private String description;
 
+    private Integer seat;
+
+    private Integer door;
+
+    private Integer gear;
+
     private Integer storefrontId;
 }

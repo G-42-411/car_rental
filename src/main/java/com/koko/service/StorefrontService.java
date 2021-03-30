@@ -1,5 +1,6 @@
 package com.koko.service;
 
+import com.alibaba.fastjson.JSONArray;
 import com.koko.pojo.Storefront;
 
 import java.util.List;
@@ -19,4 +20,10 @@ public interface StorefrontService {
     List<Storefront> selectByCondition(Storefront storefront);
 
     Storefront select(Integer id);
+
+    List<Storefront> selectAll();
+
+    List<String> selectStorefrontAddress();
+
+    public JSONArray selectDistinctAddress();
 }

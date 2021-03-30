@@ -3,16 +3,14 @@ package com.koko.service.impl;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.koko.dao.OrderMapper;
-import com.koko.dto.CarDto;
+import com.koko.dto.OrderDto;
 import com.koko.pojo.*;
 import com.koko.service.*;
-import com.koko.util.ObjectUtils;
 import com.koko.util.ServletTool;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -46,8 +44,8 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public List<Order> queryByCondition(Order order) {
-        return orderMapper.selectBySelective(order);
+    public List<Order> queryByCondition(OrderDto orderDto) {
+        return getOrderList(orderDto);
     }
 
     @Override
@@ -196,5 +194,23 @@ public class OrderServiceImpl implements OrderService {
     public int subStringDate(String s){
         int len = s.length();
         return Integer.parseInt(s.substring(len - 2, len));
+    }
+
+    public List<Order> getOrderList(OrderDto orderDto){
+        String username = (String) ServletTool.getRequest().getAttribute("username");
+        User temp = new User();
+        temp.setName(username);
+        User user = userService.getUserByCondition(temp).get(0);
+        Integer storefrontId = userStorefrontService.queryStorefrontId(user.getId());
+        Order order = orderDto.getOrder();
+        if (orderDto.getStatus() == 0){
+            order.setPickUpStorefrontId(storefrontId);
+            order.setReturnStorefrontId(storefrontId);
+        }else if(orderDto.getStatus() == 1){
+            order.setPickUpStorefrontId(storefrontId);
+        }else {
+            order.setReturnStorefrontId(storefrontId);
+        }
+        return orderMapper.selectBySelective(order);
     }
 }

@@ -23,6 +23,12 @@ public class Car {
 
     private String description;
 
+    private Integer seat;
+
+    private Integer door;
+
+    private Integer gear;
+
     public Integer getId() {
         return id;
     }
@@ -109,5 +115,29 @@ public class Car {
 
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
+    }
+
+    public Integer getSeat() {
+        return seat;
+    }
+
+    public void setSeat(Integer seat) {
+        this.seat = seat;
+    }
+
+    public Integer getDoor() {
+        return door;
+    }
+
+    public void setDoor(Integer door) {
+        this.door = door;
+    }
+
+    public Integer getGear() {
+        return gear;
+    }
+
+    public void setGear(Integer gear) {
+        this.gear = gear;
     }
 }

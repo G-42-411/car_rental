@@ -1,6 +1,7 @@
 package com.koko.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.koko.dto.OrderDto;
 import com.koko.pojo.Order;
 
 import java.util.HashMap;
@@ -13,7 +14,7 @@ import java.util.Map;
  */
 public interface OrderService {
 
-    List<Order> queryByCondition(Order order);
+    List<Order> queryByCondition(OrderDto orderDto);
 
     int add(Order order);
 
@@ -24,4 +25,5 @@ public interface OrderService {
     JSONObject queryOrderDetails(Order order);
 
     Object queryRevenue(String year);
+
 }
